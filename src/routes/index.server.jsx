@@ -1,9 +1,14 @@
-import { useShopQuery, gql, CacheNone } from "@shopify/hydrogen";
+import { useShopQuery, gql, CacheNone, CacheCustom } from "@shopify/hydrogen";
 import SlowLoader from "../components/SlowLoader.server";
 import { Suspense } from "react";
 export default function Home({ response }) {
   // Disable page level caching
-  response.cache(CacheNone());
+  response.cache(
+    CacheCustom({
+      maxAge: 60,
+      mode: "public, no-transform",
+    })
+  );
 
   // Load a product
   const {
@@ -17,6 +22,10 @@ export default function Home({ response }) {
         }
       }
     `,
+    cache: CacheCustom({
+      maxAge: 70,
+      staleWhileRevalidate: 8640000,
+    }),
   });
 
   const delayTimesInMilliseconds = [
