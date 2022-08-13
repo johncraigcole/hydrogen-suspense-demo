@@ -19,7 +19,9 @@ export default function Home({ response }) {
     `,
   });
 
-  const delayTimesInMilliseconds = [10000, 3000, 1000, 5000];
+  const delayTimesInMilliseconds = [
+    7000, 4000, 2000, 10000, 8000, 9000, 3000, 1000, 5000,
+  ];
   return (
     <>
       <h1>{product.title}</h1>
